@@ -1,0 +1,36 @@
+#general_product_data .notice {
+  margin: 10px; }
+
+#general_product_data .controls {
+  float: right;
+  line-height: 24px; }
+
+#general_product_data .expand-close a:before {
+  font-family: WooCommerce;
+  speak: none;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin-right: .618em;
+  content: "";
+  text-decoration: none;
+  font-size: .8em;
+  color: #999; }
+
+#general_product_data .expand-close a.expand_all:before {
+  content: "\e035"; }
+
+#general_product_data .expand-close a.close_all:before {
+  content: "\e036"; }
+
+#general_product_data .nyp_suggested_amounts .wc_input_price {
+  float: none; }
+  #general_product_data .add_nyp_suggested_amount .add_prompt {
+    vertical-align: middle; }
+  #general_product_data .add_nyp_suggested_amount #nyp_suggested_amount {
+    width: 250px;
+    line-height: 2em;
+    float: none;
+    vertical-align: middle; }
