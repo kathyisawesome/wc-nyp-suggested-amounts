@@ -27,7 +27,7 @@ jQuery( function( $ ) {
 			}
 
 			// Allow sorting.
-			$( '.wc-metaboxes', $product_data ).sortable({
+			$product_data.sortable({
 				items:                '.wc_nyp_suggested_amount',
 				cursor:               'move',
 				axis:                 'y',
@@ -49,6 +49,7 @@ jQuery( function( $ ) {
 			});
 			
 			// Events.
+			$( '#_wc_nyp_use_suggested_amounts' ).on( 'change', this.toggle );
 			$( '.add_nyp_suggested_amount ' ).on( 'keypress', '.wc_input_price', this.enter_amount )
 			$( '#wc_nyp_suggested_amounts' ).on( 'click', '.remove_amount', this.remove_amount );
 			$( '#wc_nyp_suggested_amounts' ).on( 'wc_nyp_suggested_amounts_changed', this.update_amounts );
@@ -140,7 +141,7 @@ jQuery( function( $ ) {
 		/**
 		 * Adds attribute when amounts are changed.
 		 */
-		trigger_needs_update: function() {		
+		trigger_needs_update: function() {
 			$( '#wc_nyp_suggested_amounts' ).data( 'needs_update', 1 ).trigger( 'wc_nyp_suggested_amounts_changed' );
 		},
 
@@ -172,12 +173,27 @@ jQuery( function( $ ) {
 			var data = [];
 
 			$( '#wc_nyp_suggested_amounts .wc_nyp_suggested_amount' ).each( function( index, element ) {
-				data[index] = $(this).data();
+				data[index] = this.dataset;
 			});
 
 			return data;
 		},
-		
+
+		/**
+		 * Toggle display of suggested amounts UI
+		 */
+		toggle: function() {
+
+			if( this.checked ) {
+				$( '.form-field.nyp_suggested_amounts, #wc_nyp_suggested_amounts' ).show();
+				$( '.form-field._suggested_price_field' ).hide();
+			} else {
+				$( '.form-field.nyp_suggested_amounts, #wc_nyp_suggested_amounts' ).hide();
+				$( '.form-field._suggested_price_field' ).show();
+			}
+
+		}
+					 
 	};
 
 	wc_nyp_suggested_amounts_actions.init();
