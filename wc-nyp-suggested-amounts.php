@@ -28,6 +28,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_NYP_Suggested_Amounts {
 
 	/**
+	 * Plugin version
+	 */
+	const VERSION = '1.0.0-beta-1';
+
+	/**
 	 * Plugin Path
 	 *
 	 * @var string $path
@@ -79,10 +84,8 @@ class WC_NYP_Suggested_Amounts {
 		// WooCommerce product admin page.
 		if ( 'product' === $screen_id ) {
 
-			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
 			wp_enqueue_script( 'accounting' );
-			wp_enqueue_script( 'wc-nyp-suggested-amounts-writepanel', self::get_plugin_url() . '/assets/js/admin/wc-nyp-suggested-amounts-writepanel' . $suffix . '.js', array( 'jquery' ), time(), true );
+			wp_enqueue_script( 'wc-nyp-suggested-amounts-writepanel', self::get_plugin_url() . '/assets/js/admin/wc-nyp-suggested-amounts-writepanel.js', array( 'jquery' ), self::VERSION, true );
 
 			$params = array(
 					'save_amounts_nonce'            => wp_create_nonce( 'save-donation-amounts' ),
@@ -98,7 +101,7 @@ class WC_NYP_Suggested_Amounts {
 			wp_localize_script( 'wc-nyp-suggested-amounts-writepanel', 'WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX', $params );
 			
 			// Metabox styles.
-			wp_enqueue_style( 'wc-nyp-suggested-amounts-writepanel', self::get_plugin_url() . '/assets/css/admin/wc-nyp-suggested-amounts-writepanel.css', array(), time() );
+			wp_enqueue_style( 'wc-nyp-suggested-amounts-writepanel', self::get_plugin_url() . '/assets/css/admin/wc-nyp-suggested-amounts-writepanel.css', array(), self::VERSION );
 
 		}
 
