@@ -103,7 +103,7 @@ class WC_NYP_Suggested_Amounts {
 			// Metabox styles.
 			wp_enqueue_style( 'wc-nyp-suggested-amounts-writepanel', self::get_plugin_url() . '/assets/css/admin/wc-nyp-suggested-amounts-writepanel.css', array(), self::VERSION );
 
-		}
+		}	
 
 	}
 
@@ -113,23 +113,33 @@ class WC_NYP_Suggested_Amounts {
 	 * @param  object WC_Product $product_object
 	 * @param  bool $show_billing_period_options
 	 * @param  mixed int|false $loop - for use in variations
-	 * @return print HTML
-	 * @since  2.8.0
 	 */
 	public static function admin_add_suggested_amounts( $product_object, $show_billing_period_options, $loop = false ) { ?>
 
 		<?php
 
-		$amounts = $product_object->get_meta( '_suggested_amounts' );
+		$use_suggested = wc_string_to_bool( $product_object->get_meta( '_wc_nyp_use_suggested_amounts', true ) );
+
+		woocommerce_wp_checkbox( 
+			array(
+				'id'      => '_wc_nyp_use_suggested_amounts',
+				'class'   => '_wc_nyp_use_suggested_amounts toggle',
+				'label'   => esc_html__( 'Suggest multiple amounts', 'wc-nyp-suggested-amounts' ),
+				'value'	  => wc_bool_to_string( $use_suggested ),
+			)
+		);
+
+
+		$amounts = $product_object->get_meta( '_wc_nyp_suggested_amounts' );
 		if( $amounts === '' ) {
 			$amounts = array();
 		}
 
 		?>
 	
-			<p class="form-field nyp_suggested_amounts">
+			<p class="form-field nyp_suggested_amounts" style="<?php echo esc_attr( $use_suggested ? '' : 'display:none' ); ?>">
 
-				<label for="_suggested_amounts"><?php  printf( __( 'Suggested amounts (%s)', 'wc-nyp-suggested-amounts' ), get_woocommerce_currency_symbol() ); ?></label>
+				<label for="_wc_nyp_suggested_amounts"><?php  printf( __( 'Suggested Amounts (%s)', 'wc-nyp-suggested-amounts' ), get_woocommerce_currency_symbol() ); ?></label>
 
 					<span class="add_nyp_suggested_amount" style="width: 100%">
 						<span class="add_prompt dashicons dashicons-plus"></span>
@@ -142,10 +152,9 @@ class WC_NYP_Suggested_Amounts {
 
 			</p>
 
-			<div class="wc-metaboxes-wrapper" style="float: none;">
-				<div id="wc_nyp_suggested_amounts" data-suggested-amounts="<?php echo esc_attr( wp_json_encode( $amounts ) ); ?>"  class="suggested_amounts wc-metaboxes"></div>
-			</div>	
-
+	
+			<fieldset id="wc_nyp_suggested_amounts" data-suggested-amounts="<?php echo esc_attr( wp_json_encode( $amounts ) ); ?>"  class="form-field suggested_amounts wc-metaboxes wc-metaboxes-wrapper" style="<?php echo esc_attr( $use_suggested ? '' : 'display:none' ); ?>"></fieldset>
+			
 			<script type="text/html" id="tmpl-nyp-suggested-amount">
 				<div class="wc_nyp_suggested_amount wc-metabox closed" data-amount="{{ data.amount }}" data-default="{{ data.default }}">
 					<h3>
@@ -164,8 +173,6 @@ class WC_NYP_Suggested_Amounts {
 	 * Save extra meta info
 	 *
 	 * @param object $product
-	 * @return void
-	 * @since 1.0 (renamed in 2.0)
 	 */
 	public static function save_product_meta( $product ) {
 
@@ -193,11 +200,17 @@ class WC_NYP_Suggested_Amounts {
 
 			// Save the amounts.
 			if( ! empty ( $amounts ) ) {
-				$product->update_meta_data( '_suggested_amounts', $amounts );
+				$product->update_meta_data( '_wc_nyp_suggested_amounts', $amounts );
 			} else {
-				$product->delete_meta_data( '_suggested_amounts' );
+				$product->delete_meta_data( '_wc_nyp_suggested_amounts' );
 			}
 
+		}
+
+		if ( isset( $_POST['_wc_nyp_use_suggested_amounts'] ) ) {
+			$product->update_meta_data( '_wc_nyp_use_suggested_amounts', 'yes' );
+		} else {
+			$product->delete_meta_data( '_wc_nyp_use_suggested_amounts' );
 		}
 
 	}

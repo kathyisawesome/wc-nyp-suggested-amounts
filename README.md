@@ -18,7 +18,7 @@ In the "General" tab of the Product Data metabox you will now see a "Suggested a
 1. Enter a price in that input and press the "Enter" key.
 2. You can remove or re-order the amounts as needed.
 
-![Suggested amounts admin](https://user-images.githubusercontent.com/507025/136436148-82cf1da4-1e5a-4e6d-816f-1f4d32d3e5db.gif)
+![Suggested amounts admin](https://user-images.githubusercontent.com/507025/139334711-0fcfd607-b317-4691-b49b-f7269250326b.gif)
 
 ### Known issues
 
