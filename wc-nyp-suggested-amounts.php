@@ -85,7 +85,7 @@ class WC_NYP_Suggested_Amounts {
 		if ( 'product' === $screen_id ) {
 
 			wp_enqueue_script( 'accounting' );
-			wp_enqueue_script( 'wc-nyp-suggested-amounts-metabox', self::get_plugin_url() . '/assets/js/admin/wc-nyp-suggested-amounts-metabox.js', array( 'jquery' ), self::VERSION, true );
+			wp_enqueue_script( 'wc-nyp-suggested-amounts-metabox', self::get_plugin_url() . '/assets/js/admin/wc-nyp-suggested-amounts-metabox.js', array( 'jquery' ), self::get_version(), true );
 
 			$params = array(
 					'save_amounts_nonce'            => wp_create_nonce( 'save-donation-amounts' ),
@@ -101,7 +101,7 @@ class WC_NYP_Suggested_Amounts {
 			wp_localize_script( 'wc-nyp-suggested-amounts-metabox', 'WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX', $params );
 			
 			// Metabox styles.
-			wp_enqueue_style( 'wc-nyp-suggested-amounts-metabox', self::get_plugin_url() . '/assets/css/admin/wc-nyp-suggested-amounts-metabox.css', array(), self::VERSION );
+			wp_enqueue_style( 'wc-nyp-suggested-amounts-metabox', self::get_plugin_url() . '/assets/css/admin/wc-nyp-suggested-amounts-metabox.css', array(), self::get_version() );
 
 		}	
 
@@ -288,6 +288,13 @@ class WC_NYP_Suggested_Amounts {
 	/*-----------------------------------------------------------------------------------*/
 	/* Helper Functions */
 	/*-----------------------------------------------------------------------------------*/
+
+	/**
+	 * Get plugin version
+	 */
+	public static function get_version() {
+		return ! defined( 'WC_NYP_DEBUG' ) || ! WC_NYP_DEBUG ? self::VERSION : time();
+	}
 
 	/**
 	 * Get plugin path
