@@ -96,6 +96,7 @@ class WC_NYP_Suggested_Amounts {
 					'currency_format_decimal_sep'   => esc_attr( wc_get_price_decimal_separator() ),
 					'currency_format_thousand_sep'  => esc_attr( wc_get_price_thousand_separator() ),
 					'currency_format'               => esc_attr( str_replace( array( '%1$s', '%2$s' ), array( '%s', '%v' ), get_woocommerce_price_format() ) ), // For accounting.js
+					'trim_zeroes'                   => apply_filters( 'woocommerce_price_trim_zeros', false ) && wc_get_price_decimals() > 0,
 				);
 
 			wp_localize_script( 'wc-nyp-suggested-amounts-metabox', 'WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX', $params );

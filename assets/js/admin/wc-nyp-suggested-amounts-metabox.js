@@ -214,13 +214,21 @@ jQuery( function( $ ) {
 
 		var currency_format = format ? WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.currency_format : '%v';
 
-		return accounting.formatMoney( price, {
+		var formatted_price = accounting.formatMoney( price, {
 				symbol : currency_symbol,
 				decimal : WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.currency_format_decimal_sep,
 				thousand: WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.currency_format_thousand_sep,
 				precision : WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.currency_format_num_decimals,
 				format: currency_format
 		}).trim();
+
+		// Trim trailing zeroes.
+		if ( WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.trim_zeroes ) {
+			var regex = new RegExp('\\' + WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.currency_format_decimal_sep + '0+$', 'i');
+			formatted_price = formatted_price.replace( regex, '' );
+		}
+
+		return formatted_price;
 
 	}
 
