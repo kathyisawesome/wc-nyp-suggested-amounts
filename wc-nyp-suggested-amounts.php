@@ -354,7 +354,7 @@ class WC_NYP_Suggested_Amounts {
 			return $amounts;
 		}
 
-		return $product->get_meta( '_suggested_amounts', true );
+		return $product->get_meta( '_wc_nyp_suggested_amounts', true );
 
 	}
 
