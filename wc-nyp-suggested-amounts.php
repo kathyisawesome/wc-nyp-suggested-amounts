@@ -63,6 +63,7 @@ class WC_NYP_Suggested_Amounts {
 		// Frontend.
 		add_action( 'wc_nyp_before_price_input', array( __CLASS__, 'display_amounts' ), 10, 2 );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'frontend_scripts' ), 30 );
+		add_filter( 'wc_nyp_get_posted_price', array( __CLASS__, 'posted_price' ), 10, 3 );
 
 	}
 
@@ -296,7 +297,19 @@ class WC_NYP_Suggested_Amounts {
 
 	}
 
-	
+	/**
+	 * Change the posted price for graceful degradation.
+	 * 
+	 * @param   mixed obj|int $product
+	 * @param   string        $suffix - needed for composites and bundles
+	 * @return  string
+	 */
+	public static function posted_price( $posted_price, $product, $suffix ) {
+		if ( isset( $_REQUEST['suggested-amount' . $suffix ] ) && 'custom' !== wp_unslash( $_REQUEST['suggested-amount' . $suffix ] ) ) {
+			$posted_price = WC_Name_Your_Price_Helpers::standardize_number( sanitize_text_field( wp_unslash( $_REQUEST['suggested-amount' . $suffix ] ) ) ); 
+		}
+		return $posted_price;
+	}
 
 	/*-----------------------------------------------------------------------------------*/
 	/* Helper Functions */
