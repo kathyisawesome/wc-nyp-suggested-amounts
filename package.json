@@ -1,0 +1,29 @@
+{
+  "name": "wc-nyp-suggested-amounts",
+  "version": "1.0.0",
+  "description": "Propose multiple price suggestions",
+  "main": "index.js",
+  "dependencies": {
+    "node-sass": "^6.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "node-sass assets/scss/admin -o assets/css/admin",
+    "watch": "node-sass — watch assets/scss -o assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kathyisawesome/wc-nyp-suggested-amounts.git"
+  },
+  "keywords": [
+    "donations",
+    "plugin",
+    "woocommerce"
+  ],
+  "author": "Kathy Darling",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/kathyisawesome/wc-nyp-suggested-amounts/issues"
+  },
+  "homepage": "https://github.com/kathyisawesome/wc-nyp-suggested-amounts#readme"
+}
