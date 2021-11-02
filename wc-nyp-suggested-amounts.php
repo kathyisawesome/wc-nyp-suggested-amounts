@@ -221,7 +221,7 @@ class WC_NYP_Suggested_Amounts {
 
 		}
 
-		if ( isset( $_POST['_wc_nyp_use_suggested_amounts'] ) ) {
+		if ( isset( $_POST['wc_nyp_use_suggested_amounts'] ) ) {
 			$product->update_meta_data( '_wc_nyp_use_suggested_amounts', 'yes' );
 		} else {
 			$product->delete_meta_data( '_wc_nyp_use_suggested_amounts' );
