@@ -286,7 +286,7 @@ class WC_NYP_Suggested_Amounts {
 		} );' );
 		
 		$custom_css = "
-				.nyp .suggested-amounts { margin-left: 0; margin-right: 0; list-style: none; display: flex; }
+				.nyp .suggested-amounts { margin-left: 0; margin-right: 0; margin-bottom: 2rem; list-style: none; display: flex; }
 				.nyp .suggested-amounts > li { margin-left: 0; margin-right: .5em; }
 				.nyp .suggested-amounts label { font-weight: normal; padding: .5em 1em; border: 1px solid; cursor: pointer; }
 				.nyp .suggested-amount:checked+label{ font-weight: bold; color: var( --wc-primary-text ); background: var( --wc-primary ); border: 1px solid transparent; } 
