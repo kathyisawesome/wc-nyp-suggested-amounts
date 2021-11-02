@@ -141,11 +141,11 @@ class WC_NYP_Suggested_Amounts {
 	
 			<p class="form-field wc_nyp_add_suggested_amounts" style="<?php echo esc_attr( $use_suggested ? '' : 'display:none' ); ?>">
 
-				<label for="wc_nyp_add_suggested_amount"><?php  printf( __( 'Suggested Amounts (%s)', 'wc-nyp-suggested-amounts' ), get_woocommerce_currency_symbol() ); ?></label>
+				<label for="wc_nyp_add_suggested_amount"><?php  printf( esc_html__( 'Suggested Amounts (%s)', 'wc-nyp-suggested-amounts' ), get_woocommerce_currency_symbol() ); ?></label>
 
 					<span class="add_prompt dashicons dashicons-plus"></span>
 					<input type="text" class="wc_input_price" name="wc_nyp_add_suggested_amount" placeholder="<?php _e( 'Add a suggested amount&hellip;', 'wc-nyp-suggested-amounts' ); ?>" />
-					<?php echo wc_help_tip( __( 'Enter a suggested amount without any currency symbols and press enter.', 'wc-nyp-suggested-amounts' ) ); ?>
+					<?php echo wc_help_tip( esc_html__( 'Enter a suggested amount without any currency symbols and press enter.', 'wc-nyp-suggested-amounts' ) ); ?>
 					
 					<textarea style="display: none;" id="wc_nyp_suggested_amounts_data" name="suggested_amounts"><?php echo esc_js( wp_json_encode( $amounts ) ); ?></textarea>
 
