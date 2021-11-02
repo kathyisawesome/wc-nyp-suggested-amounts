@@ -58,7 +58,7 @@ class WC_NYP_Suggested_Amounts {
 		// Add admin meta.
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_scripts' ) );
 		add_action( 'wc_nyp_options_pricing', array( __CLASS__, 'admin_add_suggested_amounts' ), 20, 2 );
-		add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save_product_meta' ) );
+		add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save_product_meta' ), 20 );
 
 		// Frontend.
 		add_action( 'wc_nyp_before_price_input', array( __CLASS__, 'display_amounts' ), 10, 2 );
@@ -193,7 +193,22 @@ class WC_NYP_Suggested_Amounts {
 					continue;
 				}
 
-				$amount = wc_clean( $suggested_amounts[ $i ]->amount );
+				$amount = wc_format_decimal( wc_clean( wp_unslash( $suggested_amounts[ $i ]->amount ) ) );
+
+				// This runs after NYP so min and max should exist in meta.
+				$maximum = $product->get_meta( '_maximum_price', true );
+				$minimum = $product->get_meta( '_min_price', true );
+
+				if ( '' !== $maximum && $amount > $maximum ) {
+					$error_notice = esc_html__( 'Your suggested amounts cannot be higher than the current maximum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
+					WC_Admin_Meta_Boxes::add_error( $error_notice );
+					continue;
+				} else if ( '' !== $minimum && $amount < $minimum ) {
+					$error_notice = esc_html__( 'Your suggested amounts cannot be lower than the current minimum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
+					WC_Admin_Meta_Boxes::add_error( $error_notice );
+					continue;
+				}
+
 				$amounts[] = array( 'amount' => $amount, 'default' => 'no' );
 
 			}
