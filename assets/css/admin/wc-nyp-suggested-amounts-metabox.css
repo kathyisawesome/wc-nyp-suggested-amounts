@@ -1,15 +1,48 @@
-#general_product_data .nyp_suggested_amounts .wc_input_price {
-  float: none; }
-#general_product_data .add_nyp_suggested_amount .add_prompt {
-    vertical-align: middle; }
-#general_product_data .add_nyp_suggested_amount #nyp_suggested_amount {
-  width: 250px;
-  line-height: 2em;
+#general_product_data .toggle input[type="checkbox"] {
+  display: none; }
+  #general_product_data .toggle input[type="checkbox"]:checked + .description > .wc-nyp-input-toggle {
+    border: 2px solid #007cba;
+    background-color: #007cba; }
+    #general_product_data .toggle input[type="checkbox"]:checked + .description > .wc-nyp-input-toggle::before {
+      transform: translateX(16px); }
+
+#general_product_data .toggle .description > .wc-nyp-input-toggle {
   float: none;
+  margin: 0;
+  height: 16px;
+  width: 32px;
+  border: 2px solid #999;
+  background-color: #999;
+  display: inline-block;
+  text-indent: -9999px;
+  border-radius: 10em;
+  position: relative;
+  margin-top: -1px;
+  vertical-align: text-top; }
+  #general_product_data .toggle .description > .wc-nyp-input-toggle::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    transition: transform 0.2s ease, background 0.2s ease; }
+  #general_product_data .toggle .description > .wc-nyp-input-toggle:hover {
+    background-color: #666666;
+    border-color: #666666; }
+
+#general_product_data .wc_nyp_add_suggested_amounts .wc_input_price {
+  float: none; }
+
+#general_product_data .wc_nyp_add_suggested_amounts .add_prompt::before {
   vertical-align: middle; }
-#wc_nyp_suggested_amounts {
+
+#general_product_data #wc_nyp_suggested_amounts {
   float: none !important;
   border-bottom: 0; }
-#wc_nyp_suggested_amounts .wc_nyp_suggested_amount{
-  border: 1px solid #ccc;
-  margin-bottom: 1em !important; }
+  #general_product_data #wc_nyp_suggested_amounts .wc_nyp_suggested_amount {
+    border: 1px solid #ccc;
+    margin-bottom: 1em !important; }

@@ -49,8 +49,8 @@ jQuery( function( $ ) {
 			});
 			
 			// Events.
-			$( '#_wc_nyp_use_suggested_amounts' ).on( 'change', this.toggle );
-			$( '.add_nyp_suggested_amount ' ).on( 'keypress', '.wc_input_price', this.enter_amount )
+			$( '#wc_nyp_use_suggested_amounts' ).on( 'change', this.toggle );
+			$( '.wc_nyp_add_suggested_amounts' ).on( 'keypress', '.wc_input_price', this.enter_amount )
 			$( '#wc_nyp_suggested_amounts' ).on( 'click', '.remove_amount', this.remove_amount );
 			$( '#wc_nyp_suggested_amounts' ).on( 'wc_nyp_suggested_amounts_changed', this.update_amounts );
 		},
@@ -185,10 +185,10 @@ jQuery( function( $ ) {
 		toggle: function() {
 
 			if( this.checked ) {
-				$( '.form-field.nyp_suggested_amounts, #wc_nyp_suggested_amounts' ).show();
+				$( '.form-field.wc_nyp_add_suggested_amounts, #wc_nyp_suggested_amounts' ).show();
 				$( '.form-field._suggested_price_field' ).hide();
 			} else {
-				$( '.form-field.nyp_suggested_amounts, #wc_nyp_suggested_amounts' ).hide();
+				$( '.form-field.wc_nyp_add_suggested_amounts, #wc_nyp_suggested_amounts' ).hide();
 				$( '.form-field._suggested_price_field' ).show();
 			}
 

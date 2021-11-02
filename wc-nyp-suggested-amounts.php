@@ -123,32 +123,29 @@ class WC_NYP_Suggested_Amounts {
 
 		woocommerce_wp_checkbox( 
 			array(
-				'id'      => '_wc_nyp_use_suggested_amounts',
-				'class'   => '_wc_nyp_use_suggested_amounts toggle',
-				'label'   => esc_html__( 'Suggest multiple amounts', 'wc-nyp-suggested-amounts' ),
-				'value'	  => wc_bool_to_string( $use_suggested ),
+				'id'            => 'wc_nyp_use_suggested_amounts',
+				'wrapper_class' => 'toggle',
+				'class'         => 'wc_nyp_use_suggested_amounts',
+				'label'         => esc_html__( 'Suggest multiple amounts', 'wc-nyp-suggested-amounts' ),
+				'value'	        => wc_bool_to_string( $use_suggested ),
+				'description'   => '<label for="wc_nyp_use_suggested_amounts" class="wc-nyp-input-toggle"></label>',
 			)
 		);
-
 
 		$amounts = $product_object->get_meta( '_wc_nyp_suggested_amounts' );
 		if( $amounts === '' ) {
 			$amounts = array();
 		}
-
 		?>
 	
-			<p class="form-field nyp_suggested_amounts" style="<?php echo esc_attr( $use_suggested ? '' : 'display:none' ); ?>">
+			<p class="form-field wc_nyp_add_suggested_amounts" style="<?php echo esc_attr( $use_suggested ? '' : 'display:none' ); ?>">
 
-				<label for="_wc_nyp_suggested_amounts"><?php  printf( __( 'Suggested Amounts (%s)', 'wc-nyp-suggested-amounts' ), get_woocommerce_currency_symbol() ); ?></label>
+				<label for="wc_nyp_add_suggested_amount"><?php  printf( __( 'Suggested Amounts (%s)', 'wc-nyp-suggested-amounts' ), get_woocommerce_currency_symbol() ); ?></label>
 
-					<span class="add_nyp_suggested_amount" style="width: 100%">
-						<span class="add_prompt dashicons dashicons-plus"></span>
-						<input type="text" class="short wc_input_price" name="nyp_suggested_amount" placeholder="<?php _e( 'Add a suggested amount&hellip;', 'wc-nyp-suggested-amounts' ); ?>" />
-
-						<?php echo wc_help_tip( __( 'Enter a suggested amount without any currency symbols and press enter.', 'wc-nyp-suggested-amounts' ) ); ?>
-					</span>
-
+					<span class="add_prompt dashicons dashicons-plus"></span>
+					<input type="text" class="wc_input_price" name="wc_nyp_add_suggested_amount" placeholder="<?php _e( 'Add a suggested amount&hellip;', 'wc-nyp-suggested-amounts' ); ?>" />
+					<?php echo wc_help_tip( __( 'Enter a suggested amount without any currency symbols and press enter.', 'wc-nyp-suggested-amounts' ) ); ?>
+					
 					<textarea style="display: none;" id="wc_nyp_suggested_amounts_data" name="suggested_amounts"><?php echo esc_js( wp_json_encode( $amounts ) ); ?></textarea>
 
 			</p>
