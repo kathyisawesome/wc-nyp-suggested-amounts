@@ -51,7 +51,7 @@ class WC_NYP_Suggested_Amounts {
 	 */
 	public static function init() {
 
-		if( ! did_action( 'wc_nyp_loaded' ) ) {
+		if ( ! did_action( 'wc_nyp_loaded' ) ) {
 			return false;
 		}
 
@@ -142,7 +142,8 @@ class WC_NYP_Suggested_Amounts {
 		);
 
 		$amounts = $product_object->get_meta( '_wc_nyp_suggested_amounts' );
-		if( $amounts === '' ) {
+		
+		if ( '' === $amounts ) {
 			$amounts = array();
 		}
 		?>
@@ -221,7 +222,7 @@ class WC_NYP_Suggested_Amounts {
 			}
 
 			// Save the amounts.
-			if( ! empty ( $amounts ) ) {
+			if ( ! empty ( $amounts ) ) {
 				$product->update_meta_data( '_wc_nyp_suggested_amounts', $amounts );
 			} else {
 				$product->delete_meta_data( '_wc_nyp_suggested_amounts' );
@@ -335,7 +336,7 @@ class WC_NYP_Suggested_Amounts {
 	 * Get plugin path
 	 */
 	public static function get_plugin_path() {
-		if( self::$plugin_path === '' ) {
+		if ( '' === self::$plugin_path ) {
 			self::$plugin_path = untrailingslashit( plugin_dir_path(__FILE__) );
 		}
 		return self::$plugin_path;
@@ -345,7 +346,7 @@ class WC_NYP_Suggested_Amounts {
 	 * Get plugin URL
 	 */
 	public static function get_plugin_url() {
-		if( self::$plugin_url === '' ) {
+		if ( '' === self::$plugin_url ) {
 			self::$plugin_url = untrailingslashit( plugin_dir_url(__FILE__) );
 		}
 		return self::$plugin_url;
@@ -359,7 +360,7 @@ class WC_NYP_Suggested_Amounts {
 	public static function get_suggested_amounts( $product ) {
 		$amounts = array();
 
-		if( ! $product ) {
+		if ( ! $product ) {
 			return $amounts;
 		}
 
