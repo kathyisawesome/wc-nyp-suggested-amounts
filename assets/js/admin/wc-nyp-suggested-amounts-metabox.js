@@ -20,7 +20,7 @@ jQuery( function( $ ) {
 
 				for ( var index in amounts ) {
 					if ( amounts.hasOwnProperty( index ) ) {
-						wc_nyp_suggested_amounts_actions.render_amount( amounts[index] )
+						wc_nyp_suggested_amounts_actions.render_amount( amounts[index] );
 					}
 				}
 
@@ -50,7 +50,7 @@ jQuery( function( $ ) {
 			
 			// Events.
 			$( '#wc_nyp_use_suggested_amounts' ).on( 'change', this.toggle );
-			$( '.wc_nyp_add_suggested_amounts' ).on( 'keypress', '.wc_input_price', this.enter_amount )
+			$( '.wc_nyp_add_suggested_amounts' ).on( 'keypress', '.wc_input_price', this.enter_amount );
 			$( '#wc_nyp_suggested_amounts' ).on( 'click', '.remove_amount', this.remove_amount );
 			$( '#wc_nyp_suggested_amounts' ).on( 'wc_nyp_suggested_amounts_changed', this.update_amounts );
 		},
@@ -69,7 +69,11 @@ jQuery( function( $ ) {
 			// Insert new amount.
 			var template = wp.template( 'nyp-suggested-amount' );
 
-			$( '#wc_nyp_suggested_amounts' ).append( template( { amount: amount, formatted_amount: formatted_amount, default: 0 } ) );
+			$( '#wc_nyp_suggested_amounts' ).append( template( { 
+				'amount': amount,
+				'formatted_amount': formatted_amount,
+				'default': 0
+			} ) );
 
 		},
 
@@ -104,13 +108,13 @@ jQuery( function( $ ) {
 		 *
 		 * @return {Bool}
 		 */
-		add_amount: function( value, meta ) {
+		add_amount: function( value ) {
 
 			if( value === undefined ) {
 				value = 0;
 			}
 
-			let amount = { amount: value };
+			var amount = { amount: value };
 
 			wc_nyp_suggested_amounts_actions.render_amount( amount );
 
@@ -152,7 +156,7 @@ jQuery( function( $ ) {
 		 */
 		if_needs_update: function() {
 			var needs_update = $( '#wc_nyp_suggested_amounts' ).data( 'needs_update' );
-			return ( needs_update == '1' ? true : false );
+			return ( needs_update === '1' ? true : false );
 		},
 
 		/**
@@ -172,7 +176,7 @@ jQuery( function( $ ) {
 		get_amounts_fields: function() {
 			var data = [];
 
-			$( '#wc_nyp_suggested_amounts .wc_nyp_suggested_amount' ).each( function( index, element ) {
+			$( '#wc_nyp_suggested_amounts .wc_nyp_suggested_amount' ).each( function( index ) {
 				data[index] = this.dataset;
 			});
 
