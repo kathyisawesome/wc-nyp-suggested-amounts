@@ -284,16 +284,17 @@ class WC_NYP_Suggested_Amounts {
 			} );
 
 		} );' );
-		
-		$custom_css = "
-				.nyp .suggested-amounts { margin-left: 0; margin-right: 0; margin-bottom: 2rem; list-style: none; display: flex; }
-				.nyp .suggested-amounts > li { margin-left: 0; margin-right: .5em; }
-				.nyp .suggested-amounts label { font-weight: normal; padding: .5em 1em; border: 1px solid; cursor: pointer; }
-				.nyp .suggested-amount:checked+label{ font-weight: bold; color: var( --wc-primary-text ); background: var( --wc-primary ); border: 1px solid transparent; } 
-				 .nyp .suggested-amount {
-					display: none;
-				}";
-        wp_add_inline_style( 'woocommerce-nyp', $custom_css );
+
+		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
+		// Frontend styles.
+		wp_enqueue_style( 'wc-nyp-suggested-amounts-frontend', self::get_plugin_url() . '/assets/css/admin/wc-nyp-suggested-amounts-frontend'. $suffix . '.css', array( 'woocommerce-nyp' ), self::get_version() );
+
+		wp_style_add_data( 'wc-nyp-suggested-amounts-frontend', 'rtl', 'replace' );
+
+		if ( $suffix ) {
+			wp_style_add_data( 'wc-nyp-suggested-amounts-frontend', 'suffix', '.min' );
+		}
 
 	}
 

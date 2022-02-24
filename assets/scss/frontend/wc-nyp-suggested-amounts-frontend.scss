@@ -1,0 +1,30 @@
+.nyp .suggested-amounts { 
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 2rem;
+    list-style: none;
+    display: flex;
+
+	> li {
+        margin-left: 0;
+        margin-right: .5em;
+    }
+
+	label {
+        font-weight: normal;
+        padding: .5em 1em;
+        border: 1px solid;
+        cursor: pointer;
+    }
+
+	.suggested-amount {
+        display: none;
+    }
+
+    .suggested-amount:checked+label {
+        font-weight: bold;
+        color: var( --wc-primary-text );
+        background: var( --wc-primary );
+        border: 1px solid transparent;
+    } 
+}
