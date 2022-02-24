@@ -103,7 +103,13 @@ class WC_NYP_Suggested_Amounts {
 			wp_localize_script( 'wc-nyp-suggested-amounts-metabox', 'WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX', $params );
 			
 			// Metabox styles.
-			wp_enqueue_style( 'wc-nyp-suggested-amounts-metabox', self::get_plugin_url() . '/assets/css/admin/wc-nyp-suggested-amounts-metabox.css', array(), self::get_version() );
+			wp_enqueue_style( 'wc-nyp-suggested-amounts-metabox', self::get_plugin_url() . '/assets/css/admin/wc-nyp-suggested-amounts-metabox'. $suffix . '.css', array(), self::get_version() );
+
+			wp_style_add_data( 'wc-nyp-suggested-amounts-metabox', 'rtl', 'replace' );
+
+			if ( $suffix ) {
+				wp_style_add_data( 'wc-nyp-suggested-amounts-metabox', 'suffix', '.min' );
+			}
 
 		}	
 
