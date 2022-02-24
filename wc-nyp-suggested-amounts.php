@@ -300,7 +300,7 @@ class WC_NYP_Suggested_Amounts {
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 		// Frontend styles.
-		wp_enqueue_style( 'wc-nyp-suggested-amounts-frontend', self::get_plugin_url() . '/assets/css/admin/wc-nyp-suggested-amounts-frontend'. $suffix . '.css', array( 'woocommerce-nyp' ), self::get_version() );
+		wp_enqueue_style( 'wc-nyp-suggested-amounts-frontend', self::get_plugin_url() . '/assets/css/frontend/wc-nyp-suggested-amounts-frontend'. $suffix . '.css', array( 'woocommerce-nyp' ), self::get_version() );
 
 		wp_style_add_data( 'wc-nyp-suggested-amounts-frontend', 'rtl', 'replace' );
 
