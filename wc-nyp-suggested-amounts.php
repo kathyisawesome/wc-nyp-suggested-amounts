@@ -148,7 +148,7 @@ class WC_NYP_Suggested_Amounts {
 		}
 		?>
 	
-			<p class="form-field wc_nyp_add_suggested_amounts" style="<?php echo esc_attr( $use_suggested ? '' : 'display:none' ); ?>">
+			<p class="form-field wc_nyp_add_suggested_amounts <?php echo esc_attr( $use_suggested ? '' : 'hidden' ); ?>">
 
 				<label for="wc_nyp_add_suggested_amount"><?php  printf( esc_html__( 'Suggested Amounts (%s)', 'wc-nyp-suggested-amounts' ), get_woocommerce_currency_symbol() ); ?></label>
 
