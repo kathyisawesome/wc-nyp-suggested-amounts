@@ -56,7 +56,7 @@ class WC_NYP_Suggested_Amounts {
 		}
 
 		// Add admin meta.
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_scripts' ), 20 );
 		add_action( 'wc_nyp_options_pricing', array( __CLASS__, 'admin_add_suggested_amounts' ), 20, 2 );
 		add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save_product_meta' ), 20 );
 
@@ -85,8 +85,10 @@ class WC_NYP_Suggested_Amounts {
 		// WooCommerce product admin page.
 		if ( 'product' === $screen_id ) {
 
+			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
 			wp_enqueue_script( 'accounting' );
-			wp_enqueue_script( 'wc-nyp-suggested-amounts-metabox', self::get_plugin_url() . '/assets/js/admin/wc-nyp-suggested-amounts-metabox.js', array( 'jquery' ), self::get_version(), true );
+			wp_enqueue_script( 'wc-nyp-suggested-amounts-metabox', self::get_plugin_url() . '/assets/js/admin/wc-nyp-suggested-amounts-metabox'. $suffix . '.js', array( 'wc-admin-product-meta-boxes' ), self::get_version(), true );
 
 			$params = array(
 					'save_amounts_nonce'            => wp_create_nonce( 'save-donation-amounts' ),
