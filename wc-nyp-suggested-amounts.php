@@ -278,11 +278,11 @@ class WC_NYP_Suggested_Amounts {
 		wp_add_inline_script( 'woocommerce-nyp', 'jQuery(document).ready(function($){
 
 			$( ".nyp" ).each( function( i ) {
-				let $input = $( this ).find( ".nyp-input" );
-				let $selected_amounts = $( this ).find( ".suggested-amount" );
+				var $input = $( this ).find( ".nyp-input" );
+				var $selected_amounts = $( this ).find( ".suggested-amount" );
 
 				$selected_amounts.on( "change", function() {
-					let selected_amount = $selected_amounts.filter( ":checked" ).val();
+					var selected_amount = $selected_amounts.filter( ":checked" ).val();
 
 					if ( "custom" === selected_amount ) {
 						$input.val( "" ).trigger( "focus" );
