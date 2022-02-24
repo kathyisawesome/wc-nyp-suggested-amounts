@@ -23,3 +23,7 @@ In the "General" tab of the Product Data metabox you will now see a "Suggested a
 ### Known issues
 
 You can technically introduce a suggested amount that is lower than the minimum price. Currently, the onus is on the user to avoid setting up a situation like this.
+
+### Automatic plugin updates
+
+Plugin updates can be enabled by installing the [Git Updater](https://git-updater.com/) plugin.
