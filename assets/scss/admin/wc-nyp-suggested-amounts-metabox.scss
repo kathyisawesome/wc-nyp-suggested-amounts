@@ -65,6 +65,8 @@ $customizer_blue: #007cba;
     #wc_nyp_suggested_amounts {
         float: none !important;
         border-bottom: 0;
+        width: auto;
+        max-width: 80%;
 
         .wc_nyp_suggested_amount{
             border: 1px solid #ccc;
@@ -74,3 +76,6 @@ $customizer_blue: #007cba;
 
 }
     
+@media only screen and (max-width:1280px) {
+    max-width: 50%;
+}
