@@ -22,7 +22,7 @@
 		"jQuery": false,
 		"JSON": false,
 		"wp": false,
-		"WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX", 
-		"accounting"
+		"WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX": false, 
+		"accounting": false
 	}
 }
