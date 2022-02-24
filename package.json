@@ -1,19 +1,15 @@
 {
   "name": "wc-nyp-suggested-amounts",
   "version": "1.0.0",
-  "description": "Propose multiple price suggestions",
-  "main": "index.js",
-  "dependencies": {
-    "node-sass": "^6.0.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "sass": "node-sass assets/scss/admin -o assets/css/admin",
-    "watch": "node-sass — watch assets/scss -o assets/css"
-  },
+  "description": "Propose multiple price suggestions for Name Your Price plugin.",
+  "main": "Gruntfile.js",
+  "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kathyisawesome/wc-nyp-suggested-amounts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kathyisawesome/wc-nyp-suggested-amounts/issues"
   },
   "keywords": [
     "donations",
@@ -21,9 +17,31 @@
     "woocommerce"
   ],
   "author": "Kathy Darling",
-  "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/kathyisawesome/wc-nyp-suggested-amounts/issues"
+  "homepage": "https://github.com/kathyisawesome/wc-nyp-suggested-amounts#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "@lodder/grunt-postcss": "^3.1.1",
+    "grunt": "~1.4.1",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-compress": "^2.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-contrib-jshint": "~3.2.0",
+    "grunt-contrib-uglify": "~5.0.1",
+    "grunt-contrib-watch": "~1.1.0",
+    "grunt-newer": "~1.3.0",
+    "grunt-rtlcss": "^2.0.2",
+    "grunt-sass": "^3.1.0",
+    "grunt-text-replace": "^0.4.0",
+    "grunt-wp-i18n": "~1.0.3",
+    "jshint-stylish": "~2.2.1",
+    "load-grunt-tasks": "~5.1.0",
+    "node-sass": "^7.0.1",
+    "postcss": "^8.4.6"
   },
-  "homepage": "https://github.com/kathyisawesome/wc-nyp-suggested-amounts#readme"
+  "scripts": {
+    "build": "grunt build",
+    "dev": "grunt dev",
+    "release": "grunt release"
+  }
 }

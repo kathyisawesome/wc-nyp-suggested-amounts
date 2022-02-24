@@ -1,5 +1,12 @@
 # WooCommerce Name Your Price - Suggested Amounts
 
+### Quickstart
+
+This is a developmental repo. Clone this repo and run `npm install && npm run build`   
+OR    
+[Download latest release](https://github.com/kathyisawesome/wc-mnm-price/releases/latest/download/wc-nyp-suggested-amounts.zip)
+
+
 ### What's This?
 
 Experimental mini-extension for [WooCommerce Name Your Price](https://woocommerce.com/products/name-your-price/) that adds support for multiple price suggestions without needing a variable product or variation swatches.

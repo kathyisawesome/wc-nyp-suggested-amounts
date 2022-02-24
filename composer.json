@@ -1,0 +1,8 @@
+{
+    "name": "kathyisawesome/wc-mnm-price",
+    "description": "Validate Mix and Match containers by price",
+    "homepage": "https://github.com/kathyisawesome/wc-mnm-price",
+    "type": "wordpress-plugin",
+    "license": "GPL-3.0-or-later"
+}
+  
