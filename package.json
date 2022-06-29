@@ -19,15 +19,15 @@
   "author": "Kathy Darling",
   "homepage": "https://github.com/kathyisawesome/wc-nyp-suggested-amounts#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.2",
+    "autoprefixer": "^10.4.7",
     "@lodder/grunt-postcss": "^3.1.1",
-    "grunt": "~1.4.1",
-    "grunt-contrib-clean": "^2.0.0",
+    "grunt": "~1.5.3",
+    "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-compress": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^4.0.0",
     "grunt-contrib-jshint": "~3.2.0",
-    "grunt-contrib-uglify": "~5.0.1",
+    "grunt-contrib-uglify": "~5.2.2",
     "grunt-contrib-watch": "~1.1.0",
     "grunt-newer": "~1.3.0",
     "grunt-rtlcss": "^2.0.2",
@@ -37,7 +37,7 @@
     "jshint-stylish": "~2.2.1",
     "load-grunt-tasks": "~5.1.0",
     "node-sass": "^7.0.1",
-    "postcss": "^8.4.6"
+    "postcss": "^8.4.14"
   },
   "scripts": {
     "build": "grunt build",
