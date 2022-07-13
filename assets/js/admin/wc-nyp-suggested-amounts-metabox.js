@@ -53,6 +53,9 @@ jQuery( function( $ ) {
 			$( '.wc_nyp_add_suggested_amounts' ).on( 'keypress', '.wc_input_price', this.enter_amount );
 			$( '#wc_nyp_suggested_amounts' ).on( 'click', '.remove_amount', this.remove_amount );
 			$( '#wc_nyp_suggested_amounts' ).on( 'wc_nyp_suggested_amounts_changed', this.update_amounts );
+
+			// Toggle initially.
+			$( '#wc_nyp_use_suggested_amounts' ).trigger( 'change' );
 		},
 
 
