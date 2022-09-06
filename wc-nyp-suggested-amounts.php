@@ -235,6 +235,9 @@ class WC_NYP_Suggested_Amounts {
 
 		if ( isset( $_POST['wc_nyp_use_suggested_amounts'] ) ) {
 			$product->update_meta_data( '_wc_nyp_use_suggested_amounts', 'yes' );
+
+			// Delete the default _suggested_amount to avoid conflict.
+			$product->delete_meta_data( '_suggested_price' );
 		} else {
 			$product->delete_meta_data( '_wc_nyp_use_suggested_amounts' );
 		}
@@ -373,3 +376,4 @@ class WC_NYP_Suggested_Amounts {
 
 }
 add_action( 'plugins_loaded', array( 'WC_NYP_Suggested_Amounts', 'init' ), 99 );
+ 
