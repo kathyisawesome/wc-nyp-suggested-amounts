@@ -333,7 +333,7 @@ class WC_NYP_Suggested_Amounts {
 	 * Get plugin version
 	 */
 	public static function get_version() {
-		return ! defined( 'WC_NYP_DEBUG' ) || ! WC_NYP_DEBUG ? self::VERSION : time();
+		return ! defined( 'SCRIPT_DEBUG' ) || ! SCRIPT_DEBUG ? self::VERSION : time();
 	}
 
 	/**
