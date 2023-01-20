@@ -1,31 +1,35 @@
-.nyp .suggested-amounts { 
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 2rem;
-    padding: 0;
-    list-style: none;
-    display: flex;
-
-	> li {
+.nyp {
+    
+    .suggested-amounts {
         margin-left: 0;
-        margin-right: .5em;
-    }
+        margin-right: 0;
+        margin-bottom: 2rem;
+        padding: 0;
+        list-style: none;
+        display: flex;
 
-	label {
-        font-weight: normal;
-        padding: .5em 1em;
-        border: 1px solid;
-        cursor: pointer;
-    }
+        .suggested-amounts__amount {
+            margin-left: 0;
+            margin-right: .5em;
 
-	.suggested-amount {
-        display: none;
-    }
+            label {
+                font-weight: normal;
+                padding: .5em 1em;
+                border: 1px solid;
+                cursor: pointer;
+            }
+    
+            input[type=radio] {
+                display: none;
+            }
+    
+            input[type=radio]:checked+label {
+                font-weight: bold;
+                color: var( --wc-primary-text );
+                background: var( --wc-primary );
+                border: 1px solid transparent;
+            }
+        }
 
-    .suggested-amount:checked+label {
-        font-weight: bold;
-        color: var( --wc-primary-text );
-        background: var( --wc-primary );
-        border: 1px solid transparent;
-    } 
+    }
 }

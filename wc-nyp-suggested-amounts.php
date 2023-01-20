@@ -262,11 +262,11 @@ class WC_NYP_Suggested_Amounts {
 			echo '<ul class="suggested-amounts">';
 
 			foreach( $suggested_amounts as $i => $suggested_amount ) {
-				echo '<li><input type="radio" id="suggested-amount' . $suffix . '-' . $i .'" name="suggested-amount' . $suffix . '" value="' . esc_attr( $suggested_amount["amount"] ) . '" class="suggested-amount"/>
-				<label for="suggested-amount' . $suffix . '-' . $i .'">'  . wc_price( $suggested_amount['amount'] ) . '</label></li>';
+				echo '<li class="suggested-amounts__amount">
+						<input type="radio" id="suggested-amount' . $suffix . '-' . $i .'" name="suggested-amount' . $suffix . '" value="' . esc_attr( $suggested_amount["amount"] ) . '" ' .  checked( $default, $suggested_amount["amount"], false ) . ' />
 			}
 
-			echo '<li><input type="radio" id="suggested-amount' . $suffix . '-custom" name="suggested-amount' . $suffix . '" value="custom" class="suggested-amount"/>
+			echo '<li class="suggested-amounts__amount">
 				<label for="suggested-amount' . $suffix . '-custom">' .  esc_html__( "Custom", "wc-nyp-suggested-amounts" ) . '</label></li>';
 
 			echo '</ul>';
@@ -283,7 +283,7 @@ class WC_NYP_Suggested_Amounts {
 
 			$( ".nyp" ).each( function( i ) {
 				var $input = $( this ).find( ".nyp-input" );
-				var $selected_amounts = $( this ).find( ".suggested-amount" );
+				var $selected_amounts = $( this ).find( ".suggested-amounts__amount input[type=radio]" );
 
 				$selected_amounts.on( "change", function() {
 					var selected_amount = $selected_amounts.filter( ":checked" ).val();
