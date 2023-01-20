@@ -19,7 +19,7 @@
   "author": "Kathy Darling",
   "homepage": "https://github.com/kathyisawesome/wc-nyp-suggested-amounts#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.7",
+    "autoprefixer": "^10.4.13",
     "@lodder/grunt-postcss": "^3.1.1",
     "grunt": "~1.5.3",
     "grunt-contrib-clean": "^2.0.1",
