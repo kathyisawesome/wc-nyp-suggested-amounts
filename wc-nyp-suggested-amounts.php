@@ -11,8 +11,9 @@
  * WC requires at least: 5.0.0    
  * WC tested up to: 6.3.0   
  * 
- * GitHub Plugin URI: kathyisawesome/wc-nyp-suggested-amounts
- * GitHub Plugin URI: https://github.com/wc-nyp-suggested-amounts
+ * GitHub Plugin URI: https://github.com/kathyisawesome/wc-nyp-suggested-amounts
+ * Primary Branch: trunk
+ * Release Asset: true
  *
  * Text Domain: wc-nyp-suggested-amounts
  * Domain Path: /languages/
