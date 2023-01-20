@@ -358,17 +358,19 @@ class WC_NYP_Suggested_Amounts {
 
 	/**
 	 * Get suggested amounts
+	 * 
 	 * @param  WC_Product $product
 	 * @return array.
 	 */
 	public static function get_suggested_amounts( $product ) {
 		$amounts = array();
 
-		if ( ! $product ) {
-			return $amounts;
+		if ( $product instanceof WC_Product ) {
+			$amounts = $product->get_meta( '_wc_nyp_suggested_amounts', true );
+			$amounts = empty( $amounts ) ? array() : $amounts;
 		}
 
-		return $product->get_meta( '_wc_nyp_suggested_amounts', true );
+		return $amounts;
 
 	}
 
