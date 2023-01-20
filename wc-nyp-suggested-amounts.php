@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Name Your Price - Suggested Amounts
  * Plugin URI: http://www.woocommerce.com/products/name-your-price/
  * Description: Propose multiple price suggestions
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Kathy Darling
  * Author URI: http://kathyisawesome.com
  * Requires at least: 5.8.0
@@ -34,7 +34,7 @@ class WC_NYP_Suggested_Amounts {
 	/**
 	 * Plugin version
 	 */
-	const VERSION = '1.0.1';
+	const VERSION = '1.0.2';
 
 	/**
 	 * Plugin Path

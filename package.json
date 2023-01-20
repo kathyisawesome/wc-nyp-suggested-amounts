@@ -1,6 +1,6 @@
 {
   "name": "wc-nyp-suggested-amounts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Propose multiple price suggestions for Name Your Price plugin.",
   "main": "Gruntfile.js",
   "license": "GPL-3.0-or-later",
