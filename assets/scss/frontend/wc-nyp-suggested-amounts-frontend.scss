@@ -1,16 +1,14 @@
 .nyp {
     
     .suggested-amounts {
-        margin-left: 0;
-        margin-right: 0;
-        margin-bottom: 2rem;
-        padding: 0;
+        display: grid;
         list-style: none;
-        display: flex;
+        margin: 0 0 2rem 0;
+        padding: 0;
+        grid-gap: .5rem;
+        grid-template-columns: repeat(2,minmax(0,1fr));
 
         .suggested-amounts__amount {
-            margin-left: 0;
-            margin-right: .5em;
 
             label {
                 font-weight: normal;
@@ -31,5 +29,15 @@
             }
         }
 
+    }
+
+}
+
+/**
+ * Desktop
+ */
+@media (min-width: 320px) {
+    .nyp .suggested-amounts {
+        grid-template-columns: repeat(4,minmax(0,1fr));
     }
 }
