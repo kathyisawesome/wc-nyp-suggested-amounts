@@ -21,17 +21,18 @@
                     font-size: inherit;
                 }
             }
-    
+
             input[type=radio] {
                 display: none;
             }
-    
+
             input[type=radio]:checked+label {
                 font-weight: bold;
-                color: var( --wc-primary-text );
-                background: var( --wc-primary );
+                color: var( --wc-primary-text, #FFF );
+                background: var( --wc-primary, #111 );
                 border: 1px solid transparent;
             }
+
         }
 
     }
