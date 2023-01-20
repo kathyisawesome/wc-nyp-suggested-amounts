@@ -11,10 +11,15 @@
         .suggested-amounts__amount {
 
             label {
-                font-weight: normal;
-                padding: .5em 1em;
                 border: 1px solid;
                 cursor: pointer;
+                font-weight: normal;
+                padding: .5em 1em;
+                text-align: center;
+
+                .amount {
+                    font-size: inherit;
+                }
             }
     
             input[type=radio] {
