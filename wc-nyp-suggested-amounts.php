@@ -259,15 +259,23 @@ class WC_NYP_Suggested_Amounts {
 
 		if ( ! empty( $suggested_amounts ) && is_array( $suggested_amounts ) ) {
 
+			$default = count( $suggested_amounts ) > 1 ? $suggested_amounts[1]['amount'] : $suggested_amounts[0]['amount'];
+
+			$default = apply_filters( 'wc_nyp_suggested_amounts_default', $default, $product );
+
 			echo '<ul class="suggested-amounts">';
 
 			foreach( $suggested_amounts as $i => $suggested_amount ) {
 				echo '<li class="suggested-amounts__amount">
 						<input type="radio" id="suggested-amount' . $suffix . '-' . $i .'" name="suggested-amount' . $suffix . '" value="' . esc_attr( $suggested_amount["amount"] ) . '" ' .  checked( $default, $suggested_amount["amount"], false ) . ' />
+						<label for="suggested-amount' . $suffix . '-' . $i .'">'  . wc_price( $suggested_amount['amount'] ) . '</label>
+						</li>';
 			}
 
 			echo '<li class="suggested-amounts__amount">
-				<label for="suggested-amount' . $suffix . '-custom">' .  esc_html__( "Custom", "wc-nyp-suggested-amounts" ) . '</label></li>';
+					<input type="radio" id="suggested-amount' . $suffix . '-custom" name="suggested-amount' . $suffix . '" value="custom"' . checked( $default, 'custom', false ) . '/>
+					<label for="suggested-amount' . $suffix . '-custom">' .  esc_html__( "Custom", "wc-nyp-suggested-amounts" ) . '</label>
+					</li>';
 
 			echo '</ul>';
 		}
@@ -294,6 +302,8 @@ class WC_NYP_Suggested_Amounts {
 						$input.val( woocommerce_nyp_format_price( selected_amount ) ).trigger( "change" );
 					}
 				} );
+
+				$selected_amounts.filter( ":checked" ).trigger( "change" );
 			} );
 
 		} );' );
