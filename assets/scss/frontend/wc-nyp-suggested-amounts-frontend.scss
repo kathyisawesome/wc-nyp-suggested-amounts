@@ -10,6 +10,12 @@
 
         .suggested-amounts__amount {
 
+            input[type=radio] {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
             label {
                 border: 1px solid;
                 cursor: pointer;
