@@ -261,6 +261,9 @@ class WC_NYP_Suggested_Amounts {
 
 		if ( ! empty( $suggested_amounts ) && is_array( $suggested_amounts ) ) {
 
+			//  Load the script.
+			wp_enqueue_script( 'wc-nyp-suggested-amounts' );
+
 			$default = count( $suggested_amounts ) > 1 ? $suggested_amounts[1]['amount'] : $suggested_amounts[0]['amount'];
 
 			$default = apply_filters( 'wc_nyp_suggested_amounts_default', $default, $product );
@@ -285,32 +288,14 @@ class WC_NYP_Suggested_Amounts {
 	}
 
 	/**
-	 * Link buttons to NYP field.
+	 * Load scripts and styles. Link buttons to NYP field.
 	 */
 	public static function frontend_scripts() {
-		
-		wp_add_inline_script( 'woocommerce-nyp', 'jQuery(document).ready(function($){
-
-			$( ".nyp" ).each( function( i ) {
-				var $input = $( this ).find( ".nyp-input" );
-				var $selected_amounts = $( this ).find( ".suggested-amounts__amount input[type=radio]" );
-
-				$selected_amounts.on( "change", function() {
-					var selected_amount = $selected_amounts.filter( ":checked" ).val();
-
-					if ( "custom" === selected_amount ) {
-						$input.val( "" ).trigger( "focus" );
-					} else {
-						$input.val( woocommerce_nyp_format_price( selected_amount ) ).trigger( "change" );
-					}
-				} );
-
-				$selected_amounts.filter( ":checked" ).trigger( "change" );
-			} );
-
-		} );' );
 
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
+		// Frontend scripts.
+		wp_register_script( 'wc-nyp-suggested-amounts', self::get_plugin_url() . '/assets/js/frontend/wc-nyp-suggested-amounts'. $suffix . '.js', array( 'woocommerce-nyp' ), self::get_version(), true );
 
 		// Frontend styles.
 		wp_enqueue_style( 'wc-nyp-suggested-amounts-frontend', self::get_plugin_url() . '/assets/css/frontend/wc-nyp-suggested-amounts-frontend'. $suffix . '.css', array( 'woocommerce-nyp' ), self::get_version() );
