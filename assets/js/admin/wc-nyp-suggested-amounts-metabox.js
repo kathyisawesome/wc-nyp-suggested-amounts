@@ -102,9 +102,9 @@ jQuery( function( $ ) {
 
 				// Validate again min/max.
 				if ( min && val < min ) {
-					alert( WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.i18n_minimum_error );					
+					window.alert( WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.i18n_minimum_error );					
 				} else if ( max && val > max ) {
-					alert( WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.i18n_maximum_error );
+					window.alert( WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.i18n_maximum_error );
 				} else {
 
 					// Do Stuff, submit, etc..
