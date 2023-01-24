@@ -21,6 +21,10 @@
             } );
     
             $selected_amounts.filter( ':checked' ).trigger( 'change' );
+    
+            $input.on( 'focus', function() {
+                $selected_amounts.filter( 'input[value=custom]' ).prop( 'checked', true );
+            } );
 
         } );
 	});
