@@ -51,11 +51,18 @@ class WC_NYP_Suggested_Amounts {
 	private static $plugin_url = '';
 
 	/**
+	 * var string $notice
+	 */
+	private static $notice = '';
+
+	/**
 	 * Attach hooks and filters.
 	 */
 	public static function init() {
 
 		if ( ! did_action( 'wc_nyp_loaded' ) ) {
+			self::$notice = __( 'Name Your Price - Suggested Amounts requires WooCommerce Name Your Price. Please install and activate WooCommerce Name Your Price.', 'wc-mnm-subscription-editing' );
+			add_action( 'admin_notices', array( __CLASS__, 'admin_notice' ) );
 			return false;
 		}
 
@@ -72,6 +79,21 @@ class WC_NYP_Suggested_Amounts {
 		add_filter( 'wc_nyp_get_posted_price', array( __CLASS__, 'posted_price' ), 10, 3 );
 
 	}
+
+	/*-----------------------------------------------------------------------------------*/
+	/* Notices */
+	/*-----------------------------------------------------------------------------------*/
+
+
+	/**
+	 * Users must activate Name Your Price.
+	 */
+	public static function admin_notice() {
+		echo '<div class="notice notice-error">';
+			echo wpautop( self::$notice );
+		echo '</div>';
+	}
+
 
 	/*-----------------------------------------------------------------------------------*/
 	/* Admin */
