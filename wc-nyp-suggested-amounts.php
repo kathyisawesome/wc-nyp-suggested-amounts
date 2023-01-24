@@ -65,8 +65,10 @@ class WC_NYP_Suggested_Amounts {
 		add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save_product_meta' ), 20 );
 
 		// Frontend.
-		add_action( 'wc_nyp_after_price_label', array( __CLASS__, 'display_amounts' ), 10, 2 );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'frontend_scripts' ), 30 );
+		add_action( 'wc_nyp_after_price_input', array( __CLASS__, 'display_amounts' ), 5, 2 );
+		
+		// Adding to cart.
 		add_filter( 'wc_nyp_get_posted_price', array( __CLASS__, 'posted_price' ), 10, 3 );
 
 	}

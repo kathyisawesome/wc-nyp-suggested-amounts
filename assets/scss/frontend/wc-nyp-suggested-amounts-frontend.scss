@@ -3,7 +3,7 @@
     .suggested-amounts {
         display: grid;
         list-style: none;
-        margin: 0 0 2rem 0;
+        margin: 2rem 0;
         padding: 0;
         grid-gap: .5rem;
         grid-template-columns: repeat(2,minmax(0,1fr));
