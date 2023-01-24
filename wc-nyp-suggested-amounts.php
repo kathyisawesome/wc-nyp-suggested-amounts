@@ -268,21 +268,20 @@ class WC_NYP_Suggested_Amounts {
 
 			$default = apply_filters( 'wc_nyp_suggested_amounts_default', $default, $product );
 
-			echo '<ul class="suggested-amounts">';
+			echo '<fieldset class="suggested-amounts">';
 
 			foreach( $suggested_amounts as $i => $suggested_amount ) {
-				echo '<li class="suggested-amounts__amount">
-						<input type="radio" id="suggested-amount' . $suffix . '-' . $i .'" name="suggested-amount' . $suffix . '" value="' . esc_attr( $suggested_amount["amount"] ) . '" ' .  checked( $default, $suggested_amount["amount"], false ) . ' />
+				echo '<div class="suggested-amounts__amount">
 						<label for="suggested-amount' . $suffix . '-' . $i .'">'  . wc_price( $suggested_amount['amount'] ) . '</label>
-						</li>';
+						</div>';
 			}
 
-			echo '<li class="suggested-amounts__amount">
 					<input type="radio" id="suggested-amount' . $suffix . '-custom" name="suggested-amount' . $suffix . '" value="custom"' . checked( $default, 'custom', false ) . '/>
+			echo '<div class="suggested-amounts__amount">
 					<label for="suggested-amount' . $suffix . '-custom">' .  esc_html__( "Custom", "wc-nyp-suggested-amounts" ) . '</label>
-					</li>';
+					</div>';
 
-			echo '</ul>';
+			echo '</fieldset>';
 		}
 
 	}
