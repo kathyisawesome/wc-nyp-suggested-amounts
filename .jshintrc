@@ -3,7 +3,7 @@
 	"curly": true,
 	"eqeqeq": true,
 	"eqnull": true,
-	"es3": true,
+	"esversion": 6,
 	"expr": true,
 	"immed": true,
 	"noarg": true,
@@ -18,11 +18,12 @@
 
 	"globals": {
 		"_": false,
+		"accounting": false,
 		"Backbone": false,
 		"jQuery": false,
 		"JSON": false,
+		"WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX": false,
 		"wp": false,
-		"WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX": false, 
-		"accounting": false
+		"woocommerce_nyp_format_price": false
 	}
 }
