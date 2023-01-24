@@ -88,20 +88,36 @@ jQuery( function( $ ) {
 		 */
 		enter_amount: function(e) {
 
-        	if( e.which === 13 ){
+        	if ( e.which === 13 ) {
         		
         		e.preventDefault();
         		
-        		var val = $(this).val();
+        		var val = wc_nyp_suggested_amounts_unformat_price( $(e.target).val() );
 
 	            // Disable textbox to prevent multiple submit.
-	            $(this).attr( 'disabled', 'disabled' );
-	
-	            // Do Stuff, submit, etc..
-				wc_nyp_suggested_amounts_actions.add_amount( val );
-				
-	            // Enable the textbox again if needed.
-	            $(this).removeAttr( 'disabled' ).val( '' );
+	            $(e.target).prop( 'disabled', true );
+
+				var min = wc_nyp_suggested_amounts_unformat_price( $('#_min_price').val() );
+				var max = wc_nyp_suggested_amounts_unformat_price( $('#_maximum_price').val() );
+
+				// Validate again min/max.
+				if ( min && val < min ) {
+					alert( WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.i18n_minimum_error );					
+				} else if ( max && val > max ) {
+					alert( WC_NYP_SUGGESTED_AMOUNTS_ADMIN_META_BOX.i18n_maximum_error );
+				} else {
+
+					// Do Stuff, submit, etc..
+					wc_nyp_suggested_amounts_actions.add_amount( val );
+					
+					// Reset the textbox value.
+					$(e.target).val( '' );
+
+				}
+
+				// Enable the textbox again.
+				$(e.target).prop( 'disabled', false ).trigger('focus');
+	            
 	         }
 	         
 		},

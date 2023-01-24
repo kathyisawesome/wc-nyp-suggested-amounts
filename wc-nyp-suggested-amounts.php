@@ -122,6 +122,8 @@ class WC_NYP_Suggested_Amounts {
 					'save_amounts_nonce'            => wp_create_nonce( 'save-donation-amounts' ),
 					'i18n_no_amounts_added'         => esc_js( __( 'No amount added', 'wc-nyp-suggested-amounts' ) ),
 					'i18n_remove_amount'            => esc_js( __( 'Are you sure you want to remove this amount?', 'wc-nyp-suggested-amounts' ) ),
+					'i18n_maximum_error'            => esc_js( __( 'A suggested amount cannot be more than the current maximum price. Please suggest a lower amount or increase your maximum price.', 'wc-nyp-suggested-amounts' ) ),
+					'i18n_minimum_error'            => esc_js( __( 'A suggested amount cannot be less than the current minimum price. Please suggest a higher amount or decrease your minimum price.', 'wc-nyp-suggested-amounts' ) ),
 					'currency_format_num_decimals'  => esc_attr( wc_get_price_decimals() ),
 					'currency_format_symbol'        => get_woocommerce_currency_symbol(),
 					'currency_format_decimal_sep'   => esc_attr( wc_get_price_decimal_separator() ),
