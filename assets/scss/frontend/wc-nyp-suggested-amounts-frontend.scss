@@ -22,10 +22,6 @@
                 }
             }
 
-            input[type=radio] {
-                display: none;
-            }
-
             input[type=radio]:checked+label {
                 font-weight: bold;
                 color: var( --wc-primary-text, #FFF );

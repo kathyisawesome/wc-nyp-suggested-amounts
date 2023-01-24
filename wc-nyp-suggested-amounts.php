@@ -272,12 +272,13 @@ class WC_NYP_Suggested_Amounts {
 
 			foreach( $suggested_amounts as $i => $suggested_amount ) {
 				echo '<div class="suggested-amounts__amount">
+						<input class="screen-reader-text" type="radio" id="suggested-amount' . $suffix . '-' . $i .'" name="suggested-amount' . $suffix . '" value="' . esc_attr( $suggested_amount["amount"] ) . '" ' .  checked( $default, $suggested_amount["amount"], false ) . ' />
 						<label for="suggested-amount' . $suffix . '-' . $i .'">'  . wc_price( $suggested_amount['amount'] ) . '</label>
 						</div>';
 			}
 
-					<input type="radio" id="suggested-amount' . $suffix . '-custom" name="suggested-amount' . $suffix . '" value="custom"' . checked( $default, 'custom', false ) . '/>
 			echo '<div class="suggested-amounts__amount">
+					<input class="screen-reader-text" type="radio" id="suggested-amount' . $suffix . '-custom" name="suggested-amount' . $suffix . '" value="custom"' . checked( $default, 'custom', false ) . '/>
 					<label for="suggested-amount' . $suffix . '-custom">' .  esc_html__( "Custom", "wc-nyp-suggested-amounts" ) . '</label>
 					</div>';
 
