@@ -78,6 +78,8 @@ class WC_NYP_Suggested_Amounts {
 		// Adding to cart.
 		add_filter( 'wc_nyp_get_posted_price', array( __CLASS__, 'posted_price' ), 10, 3 );
 
+		// Declare Features compatibility.
+		add_action( 'before_woocommerce_init', [ __CLASS__, 'declare_features_compatibility' ] );
 	}
 
 	/*-----------------------------------------------------------------------------------*/
@@ -344,6 +346,27 @@ class WC_NYP_Suggested_Amounts {
 			$posted_price = WC_Name_Your_Price_Helpers::standardize_number( sanitize_text_field( wp_unslash( $_REQUEST['suggested-amount' . $suffix ] ) ) ); 
 		}
 		return $posted_price;
+	}
+
+	/*-----------------------------------------------------------------------------------*/
+	/* Core Compat */
+	/*-----------------------------------------------------------------------------------*/
+
+	/**
+	 * Declare Features compatibility.
+	 *
+	 */
+	public static function declare_features_compatibility() {
+
+		if ( ! class_exists( 'Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			return;
+		}
+
+		// HPOS (Custom Order tables.
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', plugin_basename( __FILE__ ), true );
+
+		// Cart and Checkout Blocks.
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', plugin_basename( __FILE__ ), true );
 	}
 
 	/*-----------------------------------------------------------------------------------*/
