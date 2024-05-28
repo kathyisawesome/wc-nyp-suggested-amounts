@@ -219,13 +219,13 @@ module.exports = function(grunt) {
 			main: {
 				options: {
 					mode: 'zip',
-					archive: 'deploy/<%= pkg.version %>/<%= pkg.name %>.zip'
+					archive: 'deploy/<%= pkg.name %>-<%= pkg.version %>.zip',
 				},
 				expand: true,
 				cwd: 'build/',
-				src: ['**/*'],
-				dest: '/<%= pkg.name %>'
-			}
+				dest: '<%= pkg.name %>',
+				src: [ '**/*' ]
+			},
 		},
 
 		// # Internationalization
@@ -343,7 +343,7 @@ module.exports = function(grunt) {
     );
 
 	grunt.registerTask( 'dev', [ 'jshint', 'uglify', 'sass' ] );
-	grunt.registerTask( 'build', [ 'replace', 'assets', 'addtextdomain', 'makepot' ] );
-	grunt.registerTask( 'release', [ 'build', 'zip', 'clean' ] );
+	grunt.registerTask( 'build', [ 'replace', 'assets', 'addtextdomain', 'makepot', 'clean', 'copy' ] );
+	grunt.registerTask( 'release', [ 'build', 'compress', 'clean' ] );
 
 };
