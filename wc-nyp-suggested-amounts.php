@@ -220,36 +220,39 @@ class WC_NYP_Suggested_Amounts {
 
 			$suggested_amounts = json_decode( wp_unslash( $_POST['suggested_amounts'] ) );
 
-			if ( ! array( $suggested_amounts ) || empty ( $suggested_amounts ) ) {
-				return;
+			if ( ! array( $suggested_amounts ) ) {
+				$suggested_amounts = array();
 			}
-
-			$max_loop = max( array_keys( $suggested_amounts ) );
 
 			$amounts = array();
 
-			for ( $i = 0; $i <= $max_loop; $i++ ) {
-				if ( empty( $suggested_amounts[ $i ] ) && property_exists( $suggested_amounts[ $i ], 'amount' ) ) {
-					continue;
+			if ( ! empty( $suggested_amounts ) ) {
+
+				foreach ( $suggested_amounts as $suggested_amount ) {
+
+					if ( empty( $suggested_amounts ) && property_exists( $suggested_amounts, 'amount' ) ) {
+						continue;
+					}
+
+					$amount = wc_format_decimal( wc_clean( wp_unslash( $suggested_amounts->amount ) ) );
+
+					// This runs after NYP so min and max should exist in meta.
+					$maximum = $product->get_meta( '_maximum_price', true );
+					$minimum = $product->get_meta( '_min_price', true );
+
+					if ( '' !== $maximum && $amount > $maximum ) {
+						$error_notice = esc_html__( 'Your suggested amounts cannot be higher than the current maximum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
+						WC_Admin_Meta_Boxes::add_error( $error_notice );
+						continue;
+					} else if ( '' !== $minimum && $amount < $minimum ) {
+						$error_notice = esc_html__( 'Your suggested amounts cannot be lower than the current minimum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
+						WC_Admin_Meta_Boxes::add_error( $error_notice );
+						continue;
+					}
+
+					$amounts[] = array( 'amount' => $amount, 'default' => 'no' );
+
 				}
-
-				$amount = wc_format_decimal( wc_clean( wp_unslash( $suggested_amounts[ $i ]->amount ) ) );
-
-				// This runs after NYP so min and max should exist in meta.
-				$maximum = $product->get_meta( '_maximum_price', true );
-				$minimum = $product->get_meta( '_min_price', true );
-
-				if ( '' !== $maximum && $amount > $maximum ) {
-					$error_notice = esc_html__( 'Your suggested amounts cannot be higher than the current maximum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
-					WC_Admin_Meta_Boxes::add_error( $error_notice );
-					continue;
-				} else if ( '' !== $minimum && $amount < $minimum ) {
-					$error_notice = esc_html__( 'Your suggested amounts cannot be lower than the current minimum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
-					WC_Admin_Meta_Boxes::add_error( $error_notice );
-					continue;
-				}
-
-				$amounts[] = array( 'amount' => $amount, 'default' => 'no' );
 
 			}
 
