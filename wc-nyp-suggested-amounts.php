@@ -220,36 +220,39 @@ class WC_NYP_Suggested_Amounts {
 
 			$suggested_amounts = json_decode( wp_unslash( $_POST['suggested_amounts'] ) );
 
-			if ( ! array( $suggested_amounts ) || empty ( $suggested_amounts ) ) {
-				return;
+			if ( ! array( $suggested_amounts ) ) {
+				$suggested_amounts = array();
 			}
-
-			$max_loop = max( array_keys( $suggested_amounts ) );
 
 			$amounts = array();
 
-			for ( $i = 0; $i <= $max_loop; $i++ ) {
-				if ( empty( $suggested_amounts[ $i ] ) && property_exists( $suggested_amounts[ $i ], 'amount' ) ) {
-					continue;
+			if ( ! empty( $suggested_amounts ) ) {
+
+				foreach ( $suggested_amounts as $suggested_amount ) {
+
+					if ( empty( $suggested_amounts ) && property_exists( $suggested_amounts, 'amount' ) ) {
+						continue;
+					}
+
+					$amount = wc_format_decimal( wc_clean( wp_unslash( $suggested_amounts->amount ) ) );
+
+					// This runs after NYP so min and max should exist in meta.
+					$maximum = $product->get_meta( '_maximum_price', true );
+					$minimum = $product->get_meta( '_min_price', true );
+
+					if ( '' !== $maximum && $amount > $maximum ) {
+						$error_notice = esc_html__( 'Your suggested amounts cannot be higher than the current maximum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
+						WC_Admin_Meta_Boxes::add_error( $error_notice );
+						continue;
+					} else if ( '' !== $minimum && $amount < $minimum ) {
+						$error_notice = esc_html__( 'Your suggested amounts cannot be lower than the current minimum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
+						WC_Admin_Meta_Boxes::add_error( $error_notice );
+						continue;
+					}
+
+					$amounts[] = array( 'amount' => $amount, 'default' => 'no' );
+
 				}
-
-				$amount = wc_format_decimal( wc_clean( wp_unslash( $suggested_amounts[ $i ]->amount ) ) );
-
-				// This runs after NYP so min and max should exist in meta.
-				$maximum = $product->get_meta( '_maximum_price', true );
-				$minimum = $product->get_meta( '_min_price', true );
-
-				if ( '' !== $maximum && $amount > $maximum ) {
-					$error_notice = esc_html__( 'Your suggested amounts cannot be higher than the current maximum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
-					WC_Admin_Meta_Boxes::add_error( $error_notice );
-					continue;
-				} else if ( '' !== $minimum && $amount < $minimum ) {
-					$error_notice = esc_html__( 'Your suggested amounts cannot be lower than the current minimum price. Please review your prices.', 'wc-nyp-suggested-amounts' );
-					WC_Admin_Meta_Boxes::add_error( $error_notice );
-					continue;
-				}
-
-				$amounts[] = array( 'amount' => $amount, 'default' => 'no' );
 
 			}
 
@@ -281,7 +284,14 @@ class WC_NYP_Suggested_Amounts {
 	 * @param string $suffix
 	 */
 	public static function display_amounts( $product, $suffix ) {
-		global $product;
+
+		// Check if 'Suggest multiple amounts' is enabled
+		$use_suggested = wc_string_to_bool( $product->get_meta('_wc_nyp_use_suggested_amounts', true) );
+
+		if ( ! $use_suggested ) {
+			// If the option is disabled, do not display the suggested amounts.
+			return;
+		}
 		
 		$suggested_amounts = self::get_suggested_amounts( $product );
 
@@ -297,14 +307,17 @@ class WC_NYP_Suggested_Amounts {
 			echo '<fieldset class="suggested-amounts">';
 
 			foreach( $suggested_amounts as $i => $suggested_amount ) {
+
+				$input_id = "suggested-amount{$suffix}-{$i}";
+
 				echo '<div class="suggested-amounts__amount">
-						<input aria-hidden="true" type="radio" id="suggested-amount' . $suffix . '-' . $i .'" name="suggested-amount' . $suffix . '" value="' . esc_attr( $suggested_amount["amount"] ) . '" ' .  checked( $default, $suggested_amount["amount"], false ) . ' />
-						<label class="button alt" for="suggested-amount' . $suffix . '-' . $i .'">'  . wc_price( $suggested_amount['amount'] ) . '</label>
+						<input aria-hidden="true" type="radio" id="suggested-amount' . esc_attr( $input_id ) . '" name="suggested-amount' . esc_attr( $suffix ) . '" value="' . esc_attr( $suggested_amount["amount"] ) . '" ' .  checked( $default, $suggested_amount["amount"], false ) . ' />
+						<label class="button alt" for="suggested-amount' . esc_attr( $input_id ) . '">'  . wc_price( $suggested_amount['amount'] ) . '</label>
 						</div>';
 			}
 
 			echo '<div class="suggested-amounts__amount">
-					<input aria-hidden="true" type="radio" id="suggested-amount' . $suffix . '-custom" name="suggested-amount' . $suffix . '" value="custom"' . checked( $default, 'custom', false ) . '/>
+					<input aria-hidden="true" type="radio" id="suggested-amount' . $suffix . '-custom" name="suggested-amount' . esc_attr( $suffix ) . '" value="custom"' . checked( $default, 'custom', false ) . '/>
 					<label class="button alt" for="suggested-amount' . $suffix . '-custom">' .  esc_html__( "Custom", "wc-nyp-suggested-amounts" ) . '</label>
 					</div>';
 
