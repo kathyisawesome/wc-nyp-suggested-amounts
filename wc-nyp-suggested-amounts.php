@@ -281,7 +281,14 @@ class WC_NYP_Suggested_Amounts {
 	 * @param string $suffix
 	 */
 	public static function display_amounts( $product, $suffix ) {
-		global $product;
+
+		// Check if 'Suggest multiple amounts' is enabled
+		$use_suggested = wc_string_to_bool( $product->get_meta('_wc_nyp_use_suggested_amounts', true) );
+
+		if ( ! $use_suggested ) {
+			// If the option is disabled, do not display the suggested amounts.
+			return;
+		}
 		
 		$suggested_amounts = self::get_suggested_amounts( $product );
 
