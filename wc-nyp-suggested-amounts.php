@@ -230,11 +230,11 @@ class WC_NYP_Suggested_Amounts {
 
 				foreach ( $suggested_amounts as $suggested_amount ) {
 
-					if ( empty( $suggested_amounts ) && property_exists( $suggested_amounts, 'amount' ) ) {
+					if ( empty( $suggested_amounts ) && property_exists( $suggested_amount, 'amount' ) ) {
 						continue;
 					}
 
-					$amount = wc_format_decimal( wc_clean( wp_unslash( $suggested_amounts->amount ) ) );
+					$amount = wc_format_decimal( wc_clean( wp_unslash( $suggested_amount->amount ) ) );
 
 					// This runs after NYP so min and max should exist in meta.
 					$maximum = $product->get_meta( '_maximum_price', true );
