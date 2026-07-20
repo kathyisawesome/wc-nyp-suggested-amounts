@@ -300,9 +300,12 @@ class WC_NYP_Suggested_Amounts {
 			//  Load the script.
 			wp_enqueue_script( 'wc-nyp-suggested-amounts' );
 
-			$default = count( $suggested_amounts ) > 1 ? $suggested_amounts[1]['amount'] : $suggested_amounts[0]['amount'];
+			$initial = WC_Name_Your_Price_Helpers::get_initial_price( $product, $suffix );
 
+			$default = count( $suggested_amounts ) > 1 ? $suggested_amounts[1]['amount'] : $suggested_amounts[0]['amount'];
 			$default = apply_filters( 'wc_nyp_suggested_amounts_default', $default, $product );
+
+			$checked = $initial ? $initial : $default;
 
 			echo '<fieldset class="suggested-amounts">';
 
@@ -311,13 +314,13 @@ class WC_NYP_Suggested_Amounts {
 				$input_id = "suggested-amount{$suffix}-{$i}";
 
 				echo '<div class="suggested-amounts__amount">
-						<input aria-hidden="true" type="radio" id="suggested-amount' . esc_attr( $input_id ) . '" name="suggested-amount' . esc_attr( $suffix ) . '" value="' . esc_attr( $suggested_amount["amount"] ) . '" ' .  checked( $default, $suggested_amount["amount"], false ) . ' />
+						<input aria-hidden="true" type="radio" id="suggested-amount' . esc_attr( $input_id ) . '" name="suggested-amount' . esc_attr( $suffix ) . '" value="' . esc_attr( $suggested_amount["amount"] ) . '" ' .  checked( $checked, $suggested_amount["amount"], false ) . ' />
 						<label class="button alt" for="suggested-amount' . esc_attr( $input_id ) . '">'  . wc_price( $suggested_amount['amount'] ) . '</label>
 						</div>';
 			}
 
 			echo '<div class="suggested-amounts__amount">
-					<input aria-hidden="true" type="radio" id="suggested-amount' . $suffix . '-custom" name="suggested-amount' . esc_attr( $suffix ) . '" value="custom"' . checked( $default, 'custom', false ) . '/>
+					<input aria-hidden="true" type="radio" id="suggested-amount' . $suffix . '-custom" name="suggested-amount' . esc_attr( $suffix ) . '" value="custom"' . checked( $checked, 'custom', false ) . '/>
 					<label class="button alt" for="suggested-amount' . $suffix . '-custom">' .  esc_html__( "Custom", "wc-nyp-suggested-amounts" ) . '</label>
 					</div>';
 
@@ -367,7 +370,6 @@ class WC_NYP_Suggested_Amounts {
 
 	/**
 	 * Declare Features compatibility.
-	 *
 	 */
 	public static function declare_features_compatibility() {
 
