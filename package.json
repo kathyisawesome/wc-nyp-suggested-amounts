@@ -36,8 +36,8 @@
     "grunt-wp-i18n": "~1.0.3",
     "jshint-stylish": "~2.2.1",
     "load-grunt-tasks": "~5.1.0",
-    "node-sass": "^8.0.0",
-    "postcss": "^8.4.21"
+    "postcss": "^8.4.21",
+    "sass": "^1.69.0"
   },
   "scripts": {
     "build": "grunt build",
