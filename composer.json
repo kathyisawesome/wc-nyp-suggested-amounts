@@ -1,7 +1,7 @@
 {
-    "name": "kathyisawesome/wc-mnm-price",
-    "description": "Validate Mix and Match containers by price",
-    "homepage": "https://github.com/kathyisawesome/wc-mnm-price",
+    "name": "kathyisawesome/wc-nyp-suggested-amounts",
+    "description": "Propose multiple price suggestions for Name Your Price plugin",
+    "homepage": "https://github.com/kathyisawesome/wc-nyp-suggested-amounts",
     "type": "wordpress-plugin",
     "license": "GPL-3.0-or-later"
 }
