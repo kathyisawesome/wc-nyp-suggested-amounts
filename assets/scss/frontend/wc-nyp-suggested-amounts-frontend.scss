@@ -1,44 +1,50 @@
 .nyp {
-    
-    .suggested-amounts {
-        border: 0;
-        display: grid;
-        margin: 2rem 0;
-        padding: 0;
-        grid-gap: .5rem;
-        grid-template-columns: repeat(2,minmax(0,1fr));
+	
+	.suggested-amounts {
+		border: 0;
+		display: grid;
+		margin: 2rem 0;
+		padding: 0;
+		grid-gap: .5rem;
+		grid-template-columns: repeat(2,minmax(0,1fr));
 
-        .suggested-amounts__amount {
+		.suggested-amounts__amount {
 
-            input[type=radio] {
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
+			input[type=radio] {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border: 0;
+			}
 
-            label {
-                border: 1px solid;
-                cursor: pointer;
-                font-weight: normal;
-                padding: .5em 1em;
-                text-align: center;
-                float: none !important;
+			label {
+				border: 1px solid;
+				cursor: pointer;
+				font-weight: normal;
+				padding: .5em 1em;
+				text-align: center;
+				float: none !important;
 
-                .amount {
-                    font-size: inherit;
-                }
-            }
+				.amount {
+					font-size: inherit;
+				}
+			}
 
-            input[type=radio]:checked+label {
-                font-weight: bold;
-                color: var( --wc-primary-text, #FFF );
-                background: var( --wc-primary, #111 );
-                border: 1px solid transparent;
-            }
+			input[type=radio]:checked+label {
+				font-weight: bold;
+				color: var( --wc-primary-text, #FFF );
+				background: var( --wc-primary, #111 );
+				border: 1px solid transparent;
+			}
 
-        }
+		}
 
-    }
+	}
 
 }
 
@@ -46,7 +52,7 @@
  * Desktop
  */
 @media (min-width: 320px) {
-    .nyp .suggested-amounts {
-        grid-template-columns: repeat(4,minmax(0,1fr));
-    }
+	.nyp .suggested-amounts {
+		grid-template-columns: repeat(4,minmax(0,1fr));
+	}
 }
