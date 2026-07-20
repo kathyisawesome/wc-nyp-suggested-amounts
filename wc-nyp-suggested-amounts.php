@@ -196,9 +196,9 @@ class WC_NYP_Suggested_Amounts {
 			<fieldset id="wc_nyp_suggested_amounts" data-suggested-amounts="<?php echo esc_attr( wp_json_encode( $amounts ) ); ?>"  class="form-field suggested_amounts wc-metaboxes wc-metaboxes-wrapper" style="<?php echo esc_attr( $use_suggested ? '' : 'display:none' ); ?>"></fieldset>
 			
 			<script type="text/html" id="tmpl-nyp-suggested-amount">
-				<div class="wc_nyp_suggested_amount wc-metabox closed" data-amount="{{ data.amount }}" data-default="{{ data.default }}">
+				<div class="wc_nyp_suggested_amount wc-metabox closed woocommerce_attribute" data-amount="{{ data.amount }}" data-default="{{ data.default }}">
 					<h3>
-						<a href="#" class="remove_amount delete" rel="icon"><?php esc_html_e( 'Remove', 'wc-nyp-suggested-amounts' ); ?></a>
+						<a href="#" class="remove_amount remove_row delete dashicons-before dashicons-star-empty" rel="icon"><?php esc_html_e( 'Remove', 'wc-nyp-suggested-amounts' ); ?></a>
 						<div class="tips sort" data-tip="<?php esc_attr_e( 'Drag and drop rows to re-order', 'wc-nyp-suggested-amounts' ); ?>"></div>
 						<strong>{{ data.formatted_amount }}</strong>
 					</h3>

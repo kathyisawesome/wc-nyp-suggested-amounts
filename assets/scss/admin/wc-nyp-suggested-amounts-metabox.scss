@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $gray: #999;
 $customizer_blue: #007cba;
 
@@ -8,8 +10,9 @@ $customizer_blue: #007cba;
             display: none;
         
             &:checked + .description > .wc-nyp-input-toggle {
-                border: 2px solid $customizer_blue;
-                background-color: $customizer_blue;
+                border: 2px solid;
+                border-color: var( --wp-admin-theme-color, $customizer_blue );
+                background-color: var( --wp-admin-theme-color, $customizer_blue );
                 &::before {
                     transform: translateX(16px);
                 }
@@ -44,8 +47,8 @@ $customizer_blue: #007cba;
             }
 
             &:hover {
-                background-color: darken( $gray, 20 );
-                border-color: darken( $gray, 20 );
+                background-color: color.adjust( $gray, $lightness: -20% );
+                border-color: color.adjust( $gray, $lightness: -20% );
             }
 
         }
@@ -71,6 +74,20 @@ $customizer_blue: #007cba;
         .wc_nyp_suggested_amount{
             border: 1px solid #ccc;
             margin-bottom: 1em !important;
+
+            h3 {
+
+                .remove_amount::before {
+                    font-size: 16px;
+                    line-height: 1;
+                    margin-inline-end: 2px;
+                    vertical-align: center;
+                }
+
+                .sort {
+                    visibility: visible;
+                }
+            }
         }
     }
 
