@@ -103,9 +103,6 @@ jobs:
         run: |
           npm run release
 
-      - name: Rename file 
-        run: mv ${{ env.release_name }}.zip ./deploy/${{ env.release_name }}-${{ env.release_tag }}.zip
-
       - name: "Add package to GitHub releases."
         uses: softprops/action-gh-release@v1
         with:
