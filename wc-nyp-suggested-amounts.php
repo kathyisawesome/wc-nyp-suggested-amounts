@@ -59,9 +59,9 @@ class WC_NYP_Suggested_Amounts {
 	 * Attach hooks and filters.
 	 */
 	public static function init() {
-
+	
 		if ( ! did_action( 'wc_nyp_loaded' ) ) {
-			self::$notice = __( 'Name Your Price - Suggested Amounts requires WooCommerce Name Your Price. Please install and activate WooCommerce Name Your Price.', 'wc-mnm-subscription-editing' );
+			self::$notice = __( 'Name Your Price - Suggested Amounts requires WooCommerce Name Your Price. Please install and activate WooCommerce Name Your Price.', 'wc-nyp-suggested-amounts' );
 			add_action( 'admin_notices', array( __CLASS__, 'admin_notice' ) );
 			return false;
 		}
